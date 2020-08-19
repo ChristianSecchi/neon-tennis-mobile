@@ -1,0 +1,283 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://scripts/main.gd" type="Script" id=1]
+[ext_resource path="res://Img/paddle.png" type="Texture" id=2]
+[ext_resource path="res://Img/tutorial/tutorial.png" type="Texture" id=3]
+[ext_resource path="res://scripts/tutorial1.gd" type="Script" id=4]
+[ext_resource path="res://Img/pause.png" type="Texture" id=5]
+[ext_resource path="res://scripts/tutorial2.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/singleplayer/ball.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Font/visitor1.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Scenes/Pause.tscn" type="PackedScene" id=9]
+[ext_resource path="res://environments/glow.tres" type="Environment" id=10]
+[ext_resource path="res://Sound/Gravity Sound - Boss Mode CC BY 4.0.ogg" type="AudioStream" id=11]
+[ext_resource path="res://Img/pause2.png" type="Texture" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1481.38, 112.321 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 198.76, 513.064 )
+
+[sub_resource type="CanvasItemMaterial" id=3]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 9, 96 )
+
+[sub_resource type="CanvasItemMaterial" id=5]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 25.9964, 96.0023 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 9, 96.512 )
+
+[sub_resource type="CanvasItemMaterial" id=8]
+blend_mode = 1
+
+[sub_resource type="DynamicFont" id=9]
+size = 160
+use_mipmaps = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 100
+font_data = ExtResource( 8 )
+
+[sub_resource type="CanvasItemMaterial" id=11]
+
+[sub_resource type="DynamicFont" id=12]
+size = 150
+outline_color = Color( 1, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="top" type="StaticBody2D" parent="Walls" groups=[
+"top_wall",
+]]
+position = Vector2( 822.54, -113.449 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/top"]
+shape = SubResource( 1 )
+
+[node name="bottom" type="StaticBody2D" parent="Walls" groups=[
+"bottom_wall",
+]]
+position = Vector2( 836.85, 1192.46 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/bottom"]
+shape = SubResource( 1 )
+
+[node name="Lose" type="Node" parent="."]
+
+[node name="loseLeft" type="Area2D" parent="Lose"]
+position = Vector2( 0, 541 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lose/loseLeft"]
+shape = SubResource( 2 )
+
+[node name="loseRight" type="Area2D" parent="Lose"]
+position = Vector2( 1925.25, 541.495 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lose/loseRight"]
+shape = SubResource( 2 )
+
+[node name="paddle1" type="Node" parent="."]
+
+[node name="Paddle1" type="KinematicBody2D" parent="paddle1" groups=[
+"Paddle",
+]]
+material = SubResource( 3 )
+position = Vector2( 288, 540 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Pad1Score" type="Area2D" parent="paddle1/Paddle1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paddle1/Paddle1/Pad1Score"]
+position = Vector2( 35, 0 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="paddle1/Paddle1"]
+material = SubResource( 5 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paddle1/Paddle1"]
+shape = SubResource( 6 )
+
+[node name="tutorialLeft" type="Sprite" parent="."]
+position = Vector2( 120, 540 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
+
+[node name="Tween" type="Tween" parent="tutorialLeft"]
+
+[node name="Timer" type="Timer" parent="tutorialLeft"]
+wait_time = 2.5
+one_shot = true
+autostart = true
+
+[node name="Tween2" type="Tween" parent="tutorialLeft"]
+
+[node name="paddle2" type="Node" parent="."]
+
+[node name="Paddle2" type="KinematicBody2D" parent="paddle2" groups=[
+"Paddle",
+]]
+material = SubResource( 3 )
+position = Vector2( 1632, 540 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Pad2Score" type="Area2D" parent="paddle2/Paddle2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paddle2/Paddle2/Pad2Score"]
+position = Vector2( -35, 0 )
+shape = SubResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="paddle2/Paddle2"]
+material = SubResource( 5 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paddle2/Paddle2"]
+shape = SubResource( 6 )
+
+[node name="tutorialRight" type="Sprite" parent="."]
+position = Vector2( 1800, 540 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 3 )
+script = ExtResource( 6 )
+
+[node name="Tween" type="Tween" parent="tutorialRight"]
+
+[node name="Timer" type="Timer" parent="tutorialRight"]
+wait_time = 2.5
+one_shot = true
+autostart = true
+
+[node name="Tween2" type="Tween" parent="tutorialRight"]
+
+[node name="ballSpawn" type="Position2D" parent="."]
+position = Vector2( 960, 540 )
+
+[node name="ball" parent="." instance=ExtResource( 7 )]
+position = Vector2( 960, 540 )
+
+[node name="ballTimer" type="Timer" parent="."]
+wait_time = 16.0
+one_shot = true
+
+[node name="powerupTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="GUI" type="Control" parent="."]
+
+[node name="Label" type="Label" parent="GUI"]
+material = SubResource( 8 )
+margin_left = 814.0
+margin_top = 30.0
+margin_right = 1107.0
+margin_bottom = 206.0
+rect_pivot_offset = Vector2( 146, 90 )
+custom_fonts/font = SubResource( 9 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="GUI"]
+margin_left = 1200.0
+margin_top = 73.0
+margin_right = 1439.0
+margin_bottom = 163.0
+rect_pivot_offset = Vector2( 9, 4.5 )
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "XXX"
+align = 1
+valign = 1
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0.0745098, 0.0745098, 0.0745098, 0.784314 )
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOver"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="Label" type="Label" parent="GameOver/CenterContainer"]
+material = SubResource( 11 )
+margin_left = 517.0
+margin_top = 403.0
+margin_right = 1402.0
+margin_bottom = 676.0
+rect_pivot_offset = Vector2( 442.5, 136.5 )
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "YOU LOSE
+Score: 1000"
+align = 1
+valign = 1
+
+[node name="MenuTimer" type="Timer" parent="GameOver"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Pause" parent="." instance=ExtResource( 9 )]
+visible = false
+use_parent_material = true
+
+[node name="PauseButton" type="TouchScreenButton" parent="."]
+pause_mode = 2
+position = Vector2( 910, 950 )
+normal = ExtResource( 5 )
+pressed = ExtResource( 12 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 10 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -6.969
+
+[node name="Tween" type="Tween" parent="AudioStreamPlayer"]
+[connection signal="body_entered" from="Lose/loseLeft" to="." method="_on_loseLeft_body_entered"]
+[connection signal="body_entered" from="Lose/loseRight" to="." method="_on_loseRight_body_entered"]
+[connection signal="body_entered" from="paddle1/Paddle1/Pad1Score" to="." method="_on_Pad1Score_body_entered"]
+[connection signal="timeout" from="tutorialLeft/Timer" to="tutorialLeft" method="_on_Timer_timeout"]
+[connection signal="tween_completed" from="tutorialLeft/Tween2" to="tutorialLeft" method="_on_Tween2_tween_completed"]
+[connection signal="body_entered" from="paddle2/Paddle2/Pad2Score" to="." method="_on_Pad2Score_body_entered"]
+[connection signal="timeout" from="tutorialRight/Timer" to="tutorialRight" method="_on_Timer_timeout"]
+[connection signal="tween_completed" from="tutorialRight/Tween2" to="tutorialRight" method="_on_Tween2_tween_completed"]
+[connection signal="timeout" from="ballTimer" to="." method="_on_ballTimer_timeout"]
+[connection signal="timeout" from="powerupTimer" to="." method="_on_powerupTimer_timeout"]
+[connection signal="timeout" from="GameOver/MenuTimer" to="." method="_on_MenuTimer_timeout"]
+[connection signal="pressed" from="PauseButton" to="Pause" method="_on_PauseButton_pressed"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]

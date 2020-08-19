@@ -1,0 +1,144 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scripts/menu.gd" type="Script" id=1]
+[ext_resource path="res://Font/visitor1.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Img/title/small/sp2.png" type="Texture" id=3]
+[ext_resource path="res://Img/title/small/sp1.png" type="Texture" id=4]
+[ext_resource path="res://Img/title/small/mp1.png" type="Texture" id=5]
+[ext_resource path="res://Img/title/small/opt2.png" type="Texture" id=6]
+[ext_resource path="res://Img/title/small/opt1.png" type="Texture" id=7]
+[ext_resource path="res://Img/title/small/mp2.png" type="Texture" id=8]
+[ext_resource path="res://environments/glow.tres" type="Environment" id=15]
+[ext_resource path="res://Sound/Rain Drops Retro Bass Hip Hop Instrumental Loop.ogg" type="AudioStream" id=16]
+
+[sub_resource type="DynamicFont" id=1]
+size = 220
+font_data = ExtResource( 2 )
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
+
+[sub_resource type="DynamicFont" id=3]
+size = 46
+font_data = ExtResource( 2 )
+
+[node name="Title" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="MarginContainer" type="CenterContainer" parent="."]
+margin_left = -1.75818
+margin_right = 1918.24
+margin_bottom = 1080.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 211.0
+margin_top = 213.0
+margin_right = 1707.0
+margin_bottom = 866.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 1496.0
+margin_bottom = 198.0
+custom_fonts/font = SubResource( 1 )
+text = "NEON: TENNIS"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+material = SubResource( 2 )
+margin_left = 599.0
+margin_top = 202.0
+margin_right = 897.0
+margin_bottom = 337.0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 3 )
+text = "High SCORE: 
+
+"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_left = 460.0
+margin_top = 341.0
+margin_right = 1035.0
+margin_bottom = 653.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+
+[node name="Singleplayer" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+margin_right = 575.0
+margin_bottom = 100.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 3 )
+stretch_mode = 3
+
+[node name="Multiplayer" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+margin_top = 104.0
+margin_right = 575.0
+margin_bottom = 204.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 8 )
+stretch_mode = 3
+
+[node name="Options" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+margin_top = 208.0
+margin_right = 575.0
+margin_bottom = 308.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 6 )
+
+[node name="Exit" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+margin_left = 287.0
+margin_top = 312.0
+margin_right = 287.0
+margin_bottom = 312.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 15 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="Timer1" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+
+[node name="Timer3" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/Singleplayer" to="." method="_on_Singleplayer_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/Multiplayer" to="." method="_on_Multiplayer_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="timeout" from="Timer1" to="." method="_on_Timer1_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
+[connection signal="timeout" from="Timer3" to="." method="_on_Timer3_timeout"]
